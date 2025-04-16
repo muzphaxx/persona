@@ -1,40 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Persona 🧠
 
-## Getting Started
+**Persona** is a web application where you create "artificial mentors" with their own memory. Each Persona is a character with a defined role (e.g., UX Analyst), a history of learning with you, and a personalized collaboration style.
 
-First, run the development server:
+Unlike generic chats, Persona listens, learns, refines, and evolves over time. It remembers what you've built together, understands your context, accepts corrections, and proposes tailored solutions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The experience aims to be clean, intelligent, and centered around you — offering the fluidity of a notepad and the depth of a reasoning partner.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Vision & Goal
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The core idea is to create intelligent personas with their own memory, leveraging LLMs (like OpenAI's GPT models). This allows configuring specific "characters" (e.g., a UX Analyst) to assist with tasks like idea generation, UI evaluation, and more, while continuously learning from your feedback.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The goal is to have an extension of your mind: a "digital colleague" that understands your context, your way of thinking, and collaborates with increasing autonomy.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## 🎯 Current Status: MLP - "Essência Primeiro" (Week 1 Focus)
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+We are currently building the Minimum Lovable Product (MLP) focusing on the core experience:
 
-## Learn More
+- **Functional Chat:** A clean interface to interact with a Persona via the OpenAI API.
+- **Persona Creation/Editing:** Defining a Persona's name, role, and initial instructions (base prompt).
+- **Local Storage:** Saving conversation history locally per Persona using IndexedDB.
+- **Basic Navigation:** Ability to reopen previous conversations with a specific Persona.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- **Frontend:** [Next.js](https://nextjs.org/) (with React Server Components where applicable)
+- **UI:** [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Backend/API:** Next.js API Routes
+- **LLM:** [OpenAI API](https://openai.com/api/) (GPT-4 or GPT-3.5)
+- **Local Storage:** [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) (likely via libraries like `localforage` or `dexie`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+2.  **Set up environment variables:**
+    Create a `.env.local` file in the root directory and add your OpenAI API key:
+    ```
+    OPENAI_API_KEY=your_openai_api_key_here
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    This command uses Turbopack (`--turbopack`) for faster development builds as specified in `package.json`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  **Open the application:**
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 📁 Project Structure (Overview)
+
+-   `public/`: Static assets.
+-   `src/`: Main application source code.
+    -   `components/`: Reusable React components (e.g., `Chat.tsx`, `CreatePersona.tsx`, UI elements).
+    -   `lib/`: Utility functions and modules (e.g., `personaStorage.ts` for IndexedDB interaction, `utils.ts`).
+    -   `pages/`: Next.js pages and API routes.
+        -   `index.tsx`: The main entry point/page for the application.
+        -   `api/`: Backend API routes (e.g., `chat.ts` for handling OpenAI requests).
+    -   `styles/`: Global CSS styles.
+-   `next.config.ts`: Next.js configuration.
+-   `tailwind.config.ts`: Tailwind CSS configuration.
+-   `tsconfig.json`: TypeScript configuration.
+-   `package.json`: Project dependencies and scripts.
+
+---
+
+This README provides a snapshot of the project's vision, current state, and how to get started. It will be updated as the project evolves.
