@@ -5,7 +5,9 @@ import { ThemeProvider } from 'next-themes';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <Component {...pageProps} />
+      <div style={{ height: '100lvh' }}>
+        <Component {...pageProps} />
+      </div>
     </ThemeProvider>
   );
 }

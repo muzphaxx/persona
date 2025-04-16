@@ -30,6 +30,7 @@ export default function Chat() {
     setInput("")
     setLoading(true)
 
+    console.log("Sending messages to API:", newMessages)
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,16 +38,17 @@ export default function Chat() {
     })
 
     const data = await res.json()
-    setMessages([...newMessages, { role: "assistant" as const, content: data.reply }]) // Explicitly type role
+    console.log("Received response from API:", data)
+    setMessages([...newMessages, { role: "assistant" as const, content: data.message }]) // Explicitly type role
     setLoading(false)
   }
 
   return (
     // Use h-full to take available height, remove fixed width/centering
-    <div className="flex flex-col h-full"> 
+    <div className="flex flex-col h-full min-h-0"> 
       {/* Removed Temporary Static Markdown Test */}
       {/* ScrollArea will grow to fill space, min-h-0 prevents it from expanding infinitely */}
-      <ScrollArea className="prose prose-sm rounded p-4 flex-grow mb-4 min-h-0"> {/* Removed max-h-, added min-h-0 */}
+      <ScrollArea className="prose prose-sm rounded p-4 flex-grow mb-4 min-h-0 h-full overflow-y-auto "> {/* Removed max-h-lvh, added overflow-y-auto */}
         {messages.map((m, i) => (
           <div key={i} className={`w-full mb-2 ${m.role === "user" ? "text-right" : "text-left"}`}>
             <span className="chat-meta-info w-full"> {/* Applied chat-meta-info */}
@@ -59,7 +61,7 @@ export default function Chat() {
         <div ref={messagesEndRef} /> {/* Empty div for scroll target */}
       </ScrollArea>
       {/* Updated input area layout */}
-      <div className="flex bg-gray-900 items-end gap-2 p-5 rounded-4xl"> 
+      <div className="flex bg-gray-900 items-end gap-2 p-3 pl-6 min-h-16 rounded-4xl"> 
         <TextareaAutosize
           placeholder="Digite sua mensagem..."
           value={input}

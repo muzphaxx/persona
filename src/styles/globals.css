@@ -112,9 +112,6 @@
 }
 
 @layer base {
-  html, body, #__next {
-    @apply min-w-dvh;
-  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Manrope', sans-serif;
@@ -134,6 +131,6 @@
   }
   .chat-input-area { 
     /* Merged style with necessary layout/behavior classes */
-    @apply self-center text-base text-white placeholder-gray-500 rounded-md flex-grow resize-none border-none focus:ring-0 focus:outline-none; 
+    @apply self-center text-base text-white placeholder-gray-600 rounded-md flex-grow resize-none border-none focus:ring-0 focus:outline-none; 
   }
 }
